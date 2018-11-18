@@ -54,7 +54,7 @@ AddEventHandler('esx_vangelico_robbery:rob', function(robb)
 	local source = source
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local xPlayers = ESX.GetPlayers()
-	
+
 	if Stores[robb] then
 
 		local store = Stores[robb]
@@ -141,13 +141,13 @@ local function Craft(source)
 			local xPlayer  = ESX.GetPlayerFromId(source)
 			local JewelsQuantity = xPlayer.getInventoryItem('jewels').count
 
-			if JewelsQuantity < 20 then 
+			if JewelsQuantity < 20 then
 				TriggerClientEvent('esx:showNotification', source, _U('notenoughgold'))
-			else   
+			else
                 xPlayer.removeInventoryItem('jewels', 20)
                 Citizen.Wait(4000)
 				xPlayer.addMoney(4000)
-				
+
 				Craft(source)
 			end
 		else
@@ -170,3 +170,9 @@ AddEventHandler('lester:nvendita', function()
 	PlayersCrafting[_source] = false
 end)
 
+
+RegisterServerEvent('esx_vangelico_robbery:debug')
+AddEventHandler('esx_vangelico_robbery:debug', function(message)
+	local source = source
+	print(message)
+end)
